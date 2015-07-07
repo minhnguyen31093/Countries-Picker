@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mn_malachite"
+    android:orientation="horizontal"
+    android:padding="@dimen/mn_view_vertical_padding_very_small">
+
+    <RelativeLayout
+        android:id="@+id/mn_searchView_rltEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mn_search_view_height"
+        android:background="@color/mn_malachite">
+
+        <EditText
+            android:id="@+id/mn_searchView_edtSearchBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@+id/mn_searchView_imgReset"
+            android:background="@drawable/mn_background_edit_text"
+            android:completionThreshold="1"
+            android:dropDownHeight="wrap_content"
+            android:gravity="center_vertical"
+            android:hint="@string/mn_search_view_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="textAutoComplete|textAutoCorrect"
+            android:paddingLeft="@dimen/mn_view_horizontal_padding_small"
+            android:paddingRight="@dimen/mn_view_horizontal_padding_small"
+            android:privateImeOptions="nm"
+            android:singleLine="true"
+            android:textColor="@color/mn_malachite"
+            android:textColorHint="@color/mn_malachite"
+            android:textSize="@dimen/mn_text_size_normal" />
+
+        <ImageView
+            android:id="@+id/mn_searchView_imgReset"
+            android:layout_width="@dimen/mn_icon_16"
+            android:layout_height="@dimen/mn_icon_16"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mn_view_horizontal_margin_very_small"
+            android:contentDescription="@null"
+            android:src="@drawable/mn_ic_reset" />
+
+    </RelativeLayout>
+
+</LinearLayout>

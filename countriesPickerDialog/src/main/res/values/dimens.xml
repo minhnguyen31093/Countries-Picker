@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- For View -->
+    <dimen name="mn_height_divider_1">1dp</dimen>
+    <dimen name="mn_height_divider_2">2dp</dimen>
+
+    <dimen name="mn_view_horizontal_padding_small">8dp</dimen>
+    <dimen name="mn_view_horizontal_padding_medium">16dp</dimen>
+    <dimen name="mn_view_horizontal_padding_large">24dp</dimen>
+    <dimen name="mn_view_horizontal_padding_extra_large">32dp</dimen>
+
+    <dimen name="mn_view_vertical_padding_very_small">4dp</dimen>
+    <dimen name="mn_view_vertical_padding_small">8dp</dimen>
+    <dimen name="mn_view_vertical_padding_medium">16dp</dimen>
+    <dimen name="mn_view_vertical_padding_large">24dp</dimen>
+    <dimen name="mn_view_vertical_padding_extra_large">32dp</dimen>
+
+    <dimen name="mn_view_horizontal_margin_very_small">4dp</dimen>
+    <dimen name="mn_view_horizontal_margin_small">8dp</dimen>
+    <dimen name="mn_view_horizontal_margin_medium">16dp</dimen>
+    <dimen name="mn_view_horizontal_margin_large">24dp</dimen>
+    <dimen name="mn_view_horizontal_margin_extra_large">32dp</dimen>
+    <dimen name="mn_view_horizontal_margin_medium_large">48dp</dimen>
+    <dimen name="mn_view_horizontal_margin_super_large">64dp</dimen>
+
+    <dimen name="mn_view_vertical_margin_small">8dp</dimen>
+    <dimen name="mn_view_vertical_margin_medium">16dp</dimen>
+    <dimen name="mn_view_vertical_margin_large">24dp</dimen>
+    <dimen name="mn_view_vertical_margin_extra_large">32dp</dimen>
+    
+    <!-- Search view -->
+    <dimen name="mn_search_view_width">200dp</dimen>
+    <dimen name="mn_search_view_height">30dp</dimen>
+
+    <!-- For Icon -->
+    <dimen name="mn_icon_16">16dp</dimen>
+    <dimen name="mn_icon_20">20dp</dimen>
+    <dimen name="mn_icon_24">24dp</dimen>
+    <dimen name="mn_icon_small">32dp</dimen>
+    <dimen name="mn_icon_medium">48dp</dimen>
+    <dimen name="mn_icon_large">64dp</dimen>
+    <dimen name="mn_icon_extra_large">80dp</dimen>
+    <dimen name="mn_icon_extra_extra_large">90dp</dimen>
+    <dimen name="mn_icon_padding">5dp</dimen>
+    <dimen name="mn_icon_margin_small">4dp</dimen>
+    <dimen name="mn_icon_margin_medium">8dp</dimen>
+
+    <!-- For Text Size -->
+    <dimen name="mn_text_size_small">12sp</dimen>
+    <dimen name="mn_text_size_normal">14sp</dimen>
+    <dimen name="mn_text_size_medium">16sp</dimen>
+    <dimen name="mn_text_size_large">18sp</dimen>
+    <dimen name="mn_text_size_extra_large">24sp</dimen>
+    <dimen name="mn_text_size_header">32sp</dimen>
+</resources>

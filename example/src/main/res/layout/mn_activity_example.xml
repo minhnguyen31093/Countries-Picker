@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/mn_view_horizontal_padding_small"
+    android:background="@color/mn_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mn_malachite"
+        android:padding="@dimen/mn_view_vertical_padding_very_small">
+
+        <View
+            android:id="@+id/mn_exampleActivity_imgFlag"
+            android:layout_width="@dimen/mn_icon_24"
+            android:layout_height="@dimen/mn_icon_24"
+            android:layout_centerVertical="true"
+            android:background="@drawable/flag_default" />
+
+        <TextView
+            android:id="@+id/mn_exampleActivity_txtCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@color/mn_white"
+            android:layout_marginLeft="@dimen/mn_view_horizontal_margin_small"
+            android:layout_toRightOf="@+id/mn_exampleActivity_imgFlag"
+            android:text="@string/mn_countries_title"
+            android:textSize="@dimen/mn_text_size_medium" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="@dimen/mn_icon_extra_extra_large"
+        android:layout_height="@dimen/mn_icon_extra_extra_large"
+        android:layout_centerInParent="true"
+        android:background="@drawable/mn_ic_icon"/>
+</RelativeLayout>
