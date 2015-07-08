@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.minhnguyen.countriespickerdialog.R;
+import com.minhnguyen.countriespickerdialog.customview.CountriesPickerDialog;
 import com.minhnguyen.countriespickerdialog.model.Country;
 import com.minhnguyen.countriespickerdialog.utils.CountriesUtils;
 
@@ -29,15 +30,19 @@ public class CountriesAdapter extends ArrayAdapter<Country> implements Filterabl
     ListView lvwCountries;
     List<Country> filteredData;
     List<Country> countries;
+    List<Country> listSelectedCountries;
 
     private ItemFilter mFilter = new ItemFilter();
+    private int choiceMode = CountriesPickerDialog.CHOICE_MODE_SINGLE;
 
-    public CountriesAdapter(Context context, int resourceId, List<Country> countries) {
+    public CountriesAdapter(Context context, int resourceId, List<Country> countries, int choiceMode) {
         super(context, resourceId, countries);
         this.context = context;
         this.countries = countries;
         this.filteredData = countries;
+        this.choiceMode = choiceMode;
         inflater = LayoutInflater.from(context);
+        listSelectedCountries = new ArrayList<Country>();
     }
 
     @SuppressLint("InflateParams")
@@ -53,7 +58,11 @@ public class CountriesAdapter extends ArrayAdapter<Country> implements Filterabl
         } else {
             holder = (ViewHolder) view.getTag();
         }
-//        holder.country.setText(filteredData.get(position).getName() + "(" + filteredData.get(position).getPhone() + ") ");
+        if (lvwCountries.isItemChecked(position)) {
+            view.setBackgroundResource(R.drawable.mn_blue_light);
+        } else {
+            view.setBackgroundResource(R.drawable.mn_white);
+        }
         holder.country.setText(filteredData.get(position).getName());
         holder.flag.setImageResource(CountriesUtils.getResId(filteredData.get(position).getId()));
         return view;
@@ -71,6 +80,68 @@ public class CountriesAdapter extends ArrayAdapter<Country> implements Filterabl
 
     public Filter getFilter() {
         return mFilter;
+    }
+
+    public List<Country> getList() {
+        return filteredData;
+    }
+
+    public List<Country> getListSelectedCountries() {
+        return this.listSelectedCountries;
+    }
+
+    public int getListSelectedCountriesCount() {
+        return this.listSelectedCountries.size();
+    }
+
+    public void addItemToListSelectedCountries(Country selectedCountry) {
+        if (!this.listSelectedCountries.contains(selectedCountry)) {
+            this.listSelectedCountries.add(selectedCountry);
+        }
+    }
+
+    public void removeItemInListSelectedCountries(Country selectedCountry) {
+        for (Country countryItem : this.listSelectedCountries) {
+            if (countryItem.getId().equals(selectedCountry.getId())) {
+                this.listSelectedCountries.remove(countryItem);
+                break;
+            }
+        }
+    }
+
+    private void scrollToSelected(Country country) {
+        int count = filteredData.size();
+        for (int i = 0; i < count; i++) {
+            if (country.getId().equals(filteredData.get(i).getId())) {
+                lvwCountries.setItemChecked(i, true);
+                lvwCountries.setSelection(i);
+                break;
+            }
+        }
+    }
+
+    private void scrollToSelectedMulti(List<Country> countries) {
+        // for each item in list selected countries
+        for (Country countryItem : getListSelectedCountries()) {
+            int count = filteredData.size();
+            // for each item in search list countries
+            for (int i = 0; i < count; i++) {
+                // if selected item = search item
+                if (countryItem.getId().equals(filteredData.get(i).getId())) {
+                    // set check for item
+                    lvwCountries.setItemChecked(i, true);
+                    if (lvwCountries.getCheckedItemIds().length == 1) {
+                        // focus item
+                        lvwCountries.setSelection(i);
+                    }
+//                    if (lvwCountries.getCheckedItemCount() == 1) {
+//                        // focus at first item
+//                        lvwCountries.setSelection(i);
+//                    }
+                    break;
+                }
+            }
+        }
     }
 
     @SuppressLint("DefaultLocale")
@@ -106,10 +177,22 @@ public class CountriesAdapter extends ArrayAdapter<Country> implements Filterabl
         protected void publishResults(CharSequence constraint, Filter.FilterResults results) {
             filteredData = (List<Country>) results.values;
             notifyDataSetChanged();
+
+            // Set checked for selected items
+            if (choiceMode == CountriesPickerDialog.CHOICE_MODE_MULTIPLE) {
+                // check if selected countries is not null
+                if (getListSelectedCountries() != null && getListSelectedCountriesCount() > 0) {
+                    scrollToSelectedMulti(getListSelectedCountries());
+                }
+            } else {
+                if (getListSelectedCountries() != null && getListSelectedCountriesCount() > 0) {
+                    scrollToSelected(getListSelectedCountries().get(0));
+                }
+            }
         }
     }
 
-    private class ViewHolder {
+    public static class ViewHolder {
         TextView country;
         ImageView flag;
     }

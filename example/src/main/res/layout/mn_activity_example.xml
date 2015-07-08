@@ -2,12 +2,73 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/mn_view_horizontal_padding_small"
-    android:background="@color/mn_white">
+    android:background="@color/mn_white"
+    android:padding="@dimen/mn_view_horizontal_padding_small">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/mn_exampleActivity_txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@color/mn_malachite"
+        android:gravity="center"
+        android:text="Countries Picker Dialog"
+        android:textColor="@color/mn_white"
+        android:textSize="@dimen/mn_text_size_extra_large"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/mn_exampleActivity_rel0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mn_exampleActivity_txtTitle"
+        android:background="@color/mn_malachite"
+        android:padding="@dimen/mn_view_vertical_padding_very_small"
+        android:visibility="gone">
+        <!--
+        <TextView
+            android:id="@+id/mn_exampleActivity_txtType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/mn_exampleActivity_swt"
+            android:text="Single Choice"
+            android:textColor="@color/mn_white"
+            android:textSize="@dimen/mn_text_size_medium"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/mn_exampleActivity_swt"
+            style="@style/mn_switch_ios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:checked="true" />
+        -->
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/mn_exampleActivity_txtSingle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mn_exampleActivity_txtTitle"
+        android:layout_centerHorizontal="true"
+        android:background="@color/mn_malachite"
+        android:gravity="left"
+        android:layout_marginTop="@dimen/mn_view_vertical_margin_small"
+        android:paddingLeft="@dimen/mn_view_horizontal_padding_small"
+        android:text="Single"
+        android:textColor="@color/mn_white"
+        android:textSize="@dimen/mn_text_size_large"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/mn_exampleActivity_rel1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mn_exampleActivity_txtSingle"
         android:background="@color/mn_malachite"
         android:padding="@dimen/mn_view_vertical_padding_very_small">
 
@@ -23,16 +84,59 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@color/mn_white"
             android:layout_marginLeft="@dimen/mn_view_horizontal_margin_small"
             android:layout_toRightOf="@+id/mn_exampleActivity_imgFlag"
+            android:background="@color/mn_white"
             android:text="@string/mn_countries_title"
             android:textSize="@dimen/mn_text_size_medium" />
     </RelativeLayout>
 
-    <View
-        android:layout_width="@dimen/mn_icon_extra_extra_large"
-        android:layout_height="@dimen/mn_icon_extra_extra_large"
-        android:layout_centerInParent="true"
-        android:background="@drawable/mn_ic_icon"/>
+
+
+    <TextView
+        android:id="@+id/mn_exampleActivity_txtMulti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mn_exampleActivity_rel1"
+        android:layout_centerHorizontal="true"
+        android:background="@color/mn_malachite"
+        android:gravity="left"
+        android:paddingTop="@dimen/mn_view_vertical_padding_medium"
+        android:paddingLeft="@dimen/mn_view_horizontal_padding_small"
+        android:text="Multi"
+        android:textColor="@color/mn_white"
+        android:textSize="@dimen/mn_text_size_large"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/mn_exampleActivity_rel2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mn_exampleActivity_txtMulti"
+        android:background="@color/mn_malachite"
+        android:padding="@dimen/mn_view_vertical_padding_very_small"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/mn_exampleActivity_txtCountries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@color/mn_white"
+            android:text="@string/mn_countries_select"
+            android:textSize="@dimen/mn_text_size_medium" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mn_exampleActivity_rel2"
+        android:background="@color/mn_malachite">
+
+        <View
+            android:layout_width="@dimen/mn_icon_extra_extra_large"
+            android:layout_height="@dimen/mn_icon_extra_extra_large"
+            android:layout_centerInParent="true"
+            android:background="@drawable/mn_ic_icon" />
+    </RelativeLayout>
 </RelativeLayout>

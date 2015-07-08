@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <gradient
+        android:angle="45"
+        android:centerColor="@color/mn_malachite"
+        android:endColor="@color/mn_malachite"
+        android:startColor="@color/mn_malachite" />
+
+    <corners android:radius="8dp" />
+
+    <size android:width="3dp" />
+
+    <padding
+        android:left="1dp"
+        android:right="1dp" />
+
+</shape>

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CountriesPickerDialog</string>
     <string name="mn_countries_title">Select Country</string>
+    <string name="mn_countries_select">Select Countries</string>
     <string name="mn_no_data">Search not found!</string>
     <string name="mn_search_view_hint">Search Country Name, Code, Capital</string>
+    <string name="mn_select">Select</string>
 </resources>

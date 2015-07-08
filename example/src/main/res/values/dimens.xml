@@ -53,4 +53,9 @@
     <dimen name="mn_text_size_large">18sp</dimen>
     <dimen name="mn_text_size_extra_large">24sp</dimen>
     <dimen name="mn_text_size_header">32sp</dimen>
+
+    <!-- For Switch -->
+    <dimen name="mn_switch_thumb_text_padding">18dp</dimen>
+    <dimen name="mn_switch_min_width">56dp</dimen>
+
 </resources>

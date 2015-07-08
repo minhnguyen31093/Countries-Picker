@@ -3,11 +3,12 @@ package com.minhnguyen.countriespickerdialog.customview;
 import android.app.Dialog;
 import android.content.Context;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.minhnguyen.countriespickerdialog.R;
 import com.minhnguyen.countriespickerdialog.adapter.CountriesAdapter;
 import com.minhnguyen.countriespickerdialog.model.Country;
 import com.minhnguyen.countriespickerdialog.utils.CountriesUtils;
+import com.minhnguyen.countriespickerdialog.utils.ScreenUtils;
 
 import java.util.List;
 
@@ -23,14 +25,39 @@ import java.util.List;
  */
 public class CountriesPickerDialog extends Dialog {
 
+    // Choice mode
+    public static final int CHOICE_MODE_MULTIPLE = ListView.CHOICE_MODE_MULTIPLE;
+    public static final int CHOICE_MODE_SINGLE = ListView.CHOICE_MODE_SINGLE;
+
     private Context context;
+
+    // Default mode
+    private int choiceMode = CHOICE_MODE_SINGLE;
+
     private Country country;
+    private List<Country> countries;
     private SearchView searchView;
     private ListView lvwCountries;
     private TextView tvNoData;
+    private Button btnSelect;
     private CountriesAdapter lvwAdapter;
-    private List<Country> countries;
+    private List<Country> allCountries;
     private OnCountryPickerDialogListener onCountryPickerDialogListener;
+    private OnCountriesPickerDialogListener onCountriesPickerDialogListener;
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            countries = lvwAdapter.getListSelectedCountries();
+            if (countries != null) {
+                CountriesUtils.sortListCountries(countries);
+                if (onCountriesPickerDialogListener != null) {
+                    onCountriesPickerDialogListener.onSelectedCountries(countries);
+                }
+                CountriesPickerDialog.this.dismiss();
+            }
+        }
+    };
 
     public OnCountryPickerDialogListener getOnCountryPickerDialogListener() {
         return onCountryPickerDialogListener;
@@ -40,8 +67,21 @@ public class CountriesPickerDialog extends Dialog {
         this.onCountryPickerDialogListener = onCountryPickerDialogListener;
     }
 
+
+    public OnCountriesPickerDialogListener getOnCountriesPickerDialogListener() {
+        return onCountriesPickerDialogListener;
+    }
+
+    public void setOnCountriesPickerDialogListener(OnCountriesPickerDialogListener onCountriesPickerDialogListener) {
+        this.onCountriesPickerDialogListener = onCountriesPickerDialogListener;
+    }
+
     public interface OnCountryPickerDialogListener {
         public void onSelectedCountry(Country country);
+    }
+
+    public interface OnCountriesPickerDialogListener {
+        public void onSelectedCountries(List<Country> countries);
     }
 
     private TextWatcher onTextChanged = new TextWatcher() {
@@ -72,11 +112,20 @@ public class CountriesPickerDialog extends Dialog {
     private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            country = lvwAdapter.getItem(position);
-            if (onCountryPickerDialogListener != null) {
-                onCountryPickerDialogListener.onSelectedCountry(country);
+            if (choiceMode == CHOICE_MODE_MULTIPLE) { //Multi
+                if (lvwCountries.isItemChecked(position)) {
+                    lvwAdapter.addItemToListSelectedCountries(lvwAdapter.getList().get(position));
+                } else {
+                    lvwAdapter.removeItemInListSelectedCountries(lvwAdapter.getList().get(position));
+                }
+                lvwAdapter.notifyDataSetChanged();
+            } else { //Single
+                country = lvwAdapter.getItem(position);
+                if (onCountryPickerDialogListener != null) {
+                    onCountryPickerDialogListener.onSelectedCountry(country);
+                }
+                CountriesPickerDialog.this.dismiss();
             }
-            CountriesPickerDialog.this.dismiss();
         }
     };
 
@@ -85,6 +134,20 @@ public class CountriesPickerDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.context = context;
         this.country = country;
+        choiceMode = CHOICE_MODE_SINGLE;
+        setUp();
+        initView();
+        initEvent();
+        fillData();
+    }
+
+    public CountriesPickerDialog(Context context, List<Country> countries) {
+        super(context);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.setCanceledOnTouchOutside(true);
+        this.context = context;
+        this.countries = countries;
+        choiceMode = CHOICE_MODE_MULTIPLE;
         setUp();
         initView();
         initEvent();
@@ -104,6 +167,7 @@ public class CountriesPickerDialog extends Dialog {
         searchView = (SearchView) findViewById(R.id.mn_countriesPickerDialog_svwSearchView);
         lvwCountries = (ListView) findViewById(R.id.mn_countriesPickerDialog_lvwCountry);
         tvNoData = (TextView) findViewById(R.id.mn_countriesPickerDialog_tvNoData);
+        btnSelect = (Button) findViewById(R.id.mn_countriesPickerDialog_btnSelect);
     }
 
     private void initEvent() {
@@ -113,40 +177,67 @@ public class CountriesPickerDialog extends Dialog {
     }
 
     private void fillData() {
-        countries = CountriesUtils.getlistCountriesFromJson(context);
-        lvwAdapter = new CountriesAdapter(context, R.layout.mn_list_item_country, countries);
+//        setDialogPadding();
+        allCountries = CountriesUtils.getlistCountriesFromJson(context);
+        lvwAdapter = new CountriesAdapter(context, R.layout.mn_list_item_country, allCountries, choiceMode);
         lvwCountries.setAdapter(lvwAdapter);
         lvwCountries.setTextFilterEnabled(true);
+        lvwCountries.setChoiceMode(choiceMode);
 
-        if (country != null) {
-            if (!TextUtils.isEmpty(country.getId())) {
-                scrollToSelectedCode(country.getPhone(), country.getId());
-            } else {
-                scrollToSelectedPhone(country.getPhone());
+        if (choiceMode == CHOICE_MODE_MULTIPLE) { // Multi
+            btnSelect.setVisibility(View.VISIBLE);
+            btnSelect.setOnClickListener(onClickListener);
+            if (countries != null && countries.size() > 0) {
+                scrollToSelectedMulti(countries);
+            }
+        } else { // Single
+            if (country != null) {
+                scrollToSelected(country);
             }
         }
     }
 
-    private void scrollToSelectedPhone(String phone) {
-        if (!TextUtils.isEmpty(phone) && countries != null) {
-            int size = countries.size();
-            for (int i = 0; i < size; i++) {
-                if (phone.equals(countries.get(i).getPhone())) {
-                    lvwCountries.setItemChecked(i, true);
-                    lvwCountries.setSelection(i);
-                    break;
-                }
+    private void setDialogPadding() {
+        int padding = 24;
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.dimAmount = 0.7f;
+        getWindow().setAttributes(lp);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().setLayout(ScreenUtils.getWidthScreen(context) - padding, ScreenUtils.getHeightScreen(context) - padding);
+    }
+
+    private void scrollToSelected(Country country) {
+        int count = allCountries.size();
+        for (int i = 0; i < count; i++) {
+            if (country.getId().equals(allCountries.get(i).getId())) {
+                lvwAdapter.addItemToListSelectedCountries(country);
+                lvwCountries.setItemChecked(i, true);
+                lvwCountries.setSelection(i);
+                break;
             }
         }
     }
 
-    private void scrollToSelectedCode(String phone, String code) {
-        if (!TextUtils.isEmpty(phone) && countries != null) {
-            int size = countries.size();
-            for (int i = 0; i < size; i++) {
-                if (phone.equals(countries.get(i).getPhone()) && code.equals(countries.get(i).getId())) {
+    private void scrollToSelectedMulti(List<Country> countries) {
+        // for each item in list selected countries
+        for (Country countryItem : countries) {
+            int count = allCountries.size();
+            // for each item in country list
+            for (int i = 0; i < count; i++) {
+                // if selected item = item
+                if (countryItem.getId().equals(allCountries.get(i).getId())) {
+                    // add checked item to list
+                    lvwAdapter.addItemToListSelectedCountries(countryItem);
+                    // set check for item
                     lvwCountries.setItemChecked(i, true);
-                    lvwCountries.setSelection(i);
+                    if (lvwCountries.getCheckedItemIds().length == 1) {
+                        // focus item
+                        lvwCountries.setSelection(i);
+                    }
+//                    if (lvwCountries.getCheckedItemCount() == 1) {
+//                        // focus item
+//                        lvwCountries.setSelection(i);
+//                    }
                     break;
                 }
             }
