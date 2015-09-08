@@ -2,6 +2,7 @@ package com.minhnguyen.countriespickerdialog.customview;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -22,6 +23,7 @@ import com.minhnguyen.countriespickerdialog.R;
  */
 public class SearchView extends LinearLayout {
 
+    private LinearLayout lnlMain;
     private RelativeLayout rltEditText;
     private EditText edtSearchBox;
     private ImageView imgReset;
@@ -69,6 +71,7 @@ public class SearchView extends LinearLayout {
 
     private void init(final Context context) {
         View searchView = inflate(context, R.layout.mn_search_view, null);
+        lnlMain = (LinearLayout) searchView.findViewById(R.id.mn_searchView_lnlMain);
         rltEditText = (RelativeLayout) searchView.findViewById(R.id.mn_searchView_rltEditText);
         edtSearchBox = (EditText) searchView.findViewById(R.id.mn_searchView_edtSearchBox);
         edtSearchBox.setOnEditorActionListener(mOnEditorActionListener);
@@ -102,6 +105,12 @@ public class SearchView extends LinearLayout {
 
     public void setHint(String hint) {
         edtSearchBox.setHint(hint);
+    }
+
+    public void setColor(String color) {
+        lnlMain.setBackgroundColor(Color.parseColor(color));
+        edtSearchBox.setTextColor(Color.parseColor(color));
+        edtSearchBox.setHintTextColor(Color.parseColor(color));
     }
 
     public void setOnSearchViewListener(OnSearchViewListener onSearchViewListener) {

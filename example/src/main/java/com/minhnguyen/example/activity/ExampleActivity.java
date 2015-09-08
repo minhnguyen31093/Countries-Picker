@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.minhnguyen.countriespickerdialog.customview.CountriesPickerDialog;
@@ -36,6 +35,8 @@ public class ExampleActivity extends Activity {
             if (countriesPickerDialog == null || !countriesPickerDialog.isShowing()) {
                 countriesPickerDialog = new CountriesPickerDialog(ExampleActivity.this, country);
                 countriesPickerDialog.setOnCountryPickerDialogListener(onCountryPickerDialogListener);
+                String hexColor = String.format("#%06X", (0xFFFFFF & getResources().getColor(R.color.mn_orange)));
+                countriesPickerDialog.setBackgroundColor(hexColor);
                 countriesPickerDialog.show();
             }
         }
@@ -60,6 +61,9 @@ public class ExampleActivity extends Activity {
             if (countriesPickerDialog == null || !countriesPickerDialog.isShowing()) {
                 countriesPickerDialog = new CountriesPickerDialog(ExampleActivity.this, countries);
                 countriesPickerDialog.setOnCountriesPickerDialogListener(onCountriesPickerDialogListener);
+                String hexColor = String.format("#%06X", (0xFFFFFF & getResources().getColor(R.color.mn_orange)));
+                countriesPickerDialog.setBackgroundColor(hexColor);
+                countriesPickerDialog.setButtonDrawable(getResources().getDrawable(R.drawable.mn_selector_button_background));
                 countriesPickerDialog.show();
             }
         }

@@ -9,11 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <!--android:scrollbarThumbVertical="@drawable/mn_scrollbar_color"-->
     <ListView
         android:id="@+id/mn_countriesPickerDialog_lvwCountry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarThumbVertical="@drawable/mn_scrollbar_color"
         android:layout_above="@+id/mn_countriesPickerDialog_btnSelect"
         android:layout_below="@+id/mn_countriesPickerDialog_svwSearchView" />
 

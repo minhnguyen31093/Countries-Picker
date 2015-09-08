@@ -2,6 +2,8 @@ package com.minhnguyen.countriespickerdialog.customview;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -156,7 +158,7 @@ public class CountriesPickerDialog extends Dialog {
 
     public void onBackPressed() {
         CountriesPickerDialog.this.dismiss();
-    };
+    }
 
     private void setUp() {
         setContentView(R.layout.mn_countries_picker_dialog);
@@ -177,7 +179,7 @@ public class CountriesPickerDialog extends Dialog {
     }
 
     private void fillData() {
-//        setDialogPadding();
+        setDialogPadding();
         allCountries = CountriesUtils.getlistCountriesFromJson(context);
         lvwAdapter = new CountriesAdapter(context, R.layout.mn_list_item_country, allCountries, choiceMode);
         lvwCountries.setAdapter(lvwAdapter);
@@ -198,12 +200,34 @@ public class CountriesPickerDialog extends Dialog {
     }
 
     private void setDialogPadding() {
-        int padding = 24;
+        int padding = 128;
         WindowManager.LayoutParams lp = getWindow().getAttributes();
-        lp.dimAmount = 0.7f;
+        lp.dimAmount = 0.5f;
+        getWindow().setBackgroundDrawableResource(R.drawable.mn_background_radius);
         getWindow().setAttributes(lp);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setLayout(ScreenUtils.getWidthScreen(context) - padding, ScreenUtils.getHeightScreen(context) - padding);
+    }
+
+    public void setHint(String hint) {
+        if (searchView != null) {
+            searchView.setHint(hint);
+        }
+    }
+
+    public void setBackgroundColor(String color) {
+        if (searchView != null) {
+            searchView.setColor(color);
+        }
+        if (btnSelect != null) {
+            btnSelect.setBackgroundColor(Color.parseColor(color));
+        }
+    }
+
+    public void setButtonDrawable(Drawable drawable) {
+        if (btnSelect != null) {
+            btnSelect.setBackgroundDrawable(drawable);
+        }
     }
 
     private void scrollToSelected(Country country) {
