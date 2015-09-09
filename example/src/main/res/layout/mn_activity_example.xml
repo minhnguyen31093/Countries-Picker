@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mn_white"
+    android:background="@color/mn_malachite"
     android:padding="@dimen/mn_view_horizontal_padding_small">
 
     <TextView
@@ -55,9 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/mn_exampleActivity_txtTitle"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/mn_view_vertical_margin_small"
         android:background="@color/mn_malachite"
         android:gravity="left"
-        android:layout_marginTop="@dimen/mn_view_vertical_margin_small"
         android:paddingLeft="@dimen/mn_view_horizontal_padding_small"
         android:text="Single"
         android:textColor="@color/mn_white"
@@ -92,7 +93,6 @@
     </RelativeLayout>
 
 
-
     <TextView
         android:id="@+id/mn_exampleActivity_txtMulti"
         android:layout_width="match_parent"
@@ -101,8 +101,8 @@
         android:layout_centerHorizontal="true"
         android:background="@color/mn_malachite"
         android:gravity="left"
-        android:paddingTop="@dimen/mn_view_vertical_padding_medium"
         android:paddingLeft="@dimen/mn_view_horizontal_padding_small"
+        android:paddingTop="@dimen/mn_view_vertical_padding_medium"
         android:text="Multi"
         android:textColor="@color/mn_white"
         android:textSize="@dimen/mn_text_size_large"
@@ -127,10 +127,30 @@
             android:textSize="@dimen/mn_text_size_medium" />
     </RelativeLayout>
 
+    <com.minhnguyen.countriespickerdialog.customview.CountrySpinner
+        android:id="@+id/mn_exampleActivity_spnCountry"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mn_exampleActivity_rel2"
+        android:layout_marginTop="@dimen/mn_view_vertical_padding_medium"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:spinnerMode="dropdown"
+        custom:hint="Select Country"/>
+
+    <com.minhnguyen.countriespickerdialog.customview.CountrySearch
+        android:id="@+id/mn_exampleActivity_atxtCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mn_exampleActivity_spnCountry"
+        android:layout_marginTop="@dimen/mn_view_vertical_padding_medium"
+        android:background="@android:color/white"
+        android:hint="Select Country" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/mn_exampleActivity_rel2"
+        android:layout_below="@+id/mn_exampleActivity_atxtCountry"
         android:background="@color/mn_malachite">
 
         <View

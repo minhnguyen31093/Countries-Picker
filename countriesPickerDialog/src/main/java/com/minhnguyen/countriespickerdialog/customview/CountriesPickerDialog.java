@@ -27,14 +27,11 @@ import java.util.List;
  */
 public class CountriesPickerDialog extends Dialog {
 
-    // Choice mode
-    public static final int CHOICE_MODE_MULTIPLE = ListView.CHOICE_MODE_MULTIPLE;
-    public static final int CHOICE_MODE_SINGLE = ListView.CHOICE_MODE_SINGLE;
 
     private Context context;
 
     // Default mode
-    private int choiceMode = CHOICE_MODE_SINGLE;
+    private int choiceMode;
 
     private Country country;
     private List<Country> countries;
@@ -114,7 +111,7 @@ public class CountriesPickerDialog extends Dialog {
     private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (choiceMode == CHOICE_MODE_MULTIPLE) { //Multi
+            if (choiceMode == CountriesAdapter.CHOICE_MODE_MULTIPLE) { //Multi
                 if (lvwCountries.isItemChecked(position)) {
                     lvwAdapter.addItemToListSelectedCountries(lvwAdapter.getList().get(position));
                 } else {
@@ -136,7 +133,7 @@ public class CountriesPickerDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.context = context;
         this.country = country;
-        choiceMode = CHOICE_MODE_SINGLE;
+        choiceMode = CountriesAdapter.CHOICE_MODE_SINGLE;
         setUp();
         initView();
         initEvent();
@@ -149,7 +146,7 @@ public class CountriesPickerDialog extends Dialog {
         this.setCanceledOnTouchOutside(true);
         this.context = context;
         this.countries = countries;
-        choiceMode = CHOICE_MODE_MULTIPLE;
+        choiceMode = CountriesAdapter.CHOICE_MODE_MULTIPLE;
         setUp();
         initView();
         initEvent();
@@ -180,13 +177,12 @@ public class CountriesPickerDialog extends Dialog {
 
     private void fillData() {
         setDialogPadding();
-        allCountries = CountriesUtils.getlistCountriesFromJson(context);
-        lvwAdapter = new CountriesAdapter(context, R.layout.mn_list_item_country, allCountries, choiceMode);
+        lvwAdapter = new CountriesAdapter(context, choiceMode);
         lvwCountries.setAdapter(lvwAdapter);
         lvwCountries.setTextFilterEnabled(true);
         lvwCountries.setChoiceMode(choiceMode);
 
-        if (choiceMode == CHOICE_MODE_MULTIPLE) { // Multi
+        if (choiceMode == CountriesAdapter.CHOICE_MODE_MULTIPLE) { // Multi
             btnSelect.setVisibility(View.VISIBLE);
             btnSelect.setOnClickListener(onClickListener);
             if (countries != null && countries.size() > 0) {
@@ -215,12 +211,13 @@ public class CountriesPickerDialog extends Dialog {
         }
     }
 
-    public void setBackgroundColor(String color) {
+    public void setBackgroundColor(int color) {
+        String hexColor = String.format("#%06X", (0xFFFFFF & color));
         if (searchView != null) {
-            searchView.setColor(color);
+            searchView.setColor(hexColor);
         }
         if (btnSelect != null) {
-            btnSelect.setBackgroundColor(Color.parseColor(color));
+            btnSelect.setBackgroundColor(Color.parseColor(hexColor));
         }
     }
 

@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.minhnguyen.countriespickerdialog.R;
-import com.minhnguyen.countriespickerdialog.customview.CountriesPickerDialog;
 import com.minhnguyen.countriespickerdialog.model.Country;
 import com.minhnguyen.countriespickerdialog.utils.CountriesUtils;
 
@@ -25,20 +24,20 @@ import java.util.List;
  * Created by Minh Nguyen on 6/9/2015.
  */
 public class CountriesAdapter extends ArrayAdapter<Country> implements Filterable {
-    Context context;
-    LayoutInflater inflater;
-    ListView lvwCountries;
-    List<Country> filteredData;
-    List<Country> countries;
-    List<Country> listSelectedCountries;
+    public static final int CHOICE_MODE_MULTIPLE = ListView.CHOICE_MODE_MULTIPLE;
+    public static final int CHOICE_MODE_SINGLE = ListView.CHOICE_MODE_SINGLE;
+    private Context context;
+    private LayoutInflater inflater;
+    private ListView lvwCountries;
+    private List<Country> countries, listSelectedCountries, filteredData;
 
     private ItemFilter mFilter = new ItemFilter();
-    private int choiceMode = CountriesPickerDialog.CHOICE_MODE_SINGLE;
+    private int choiceMode = CHOICE_MODE_SINGLE;
 
-    public CountriesAdapter(Context context, int resourceId, List<Country> countries, int choiceMode) {
-        super(context, resourceId, countries);
+    public CountriesAdapter(Context context, int choiceMode) {
+        super(context, R.layout.mn_list_item_country);
         this.context = context;
-        this.countries = countries;
+        this.countries = CountriesUtils.getlistCountriesFromJson(context);
         this.filteredData = countries;
         this.choiceMode = choiceMode;
         inflater = LayoutInflater.from(context);
@@ -179,7 +178,7 @@ public class CountriesAdapter extends ArrayAdapter<Country> implements Filterabl
             notifyDataSetChanged();
 
             // Set checked for selected items
-            if (choiceMode == CountriesPickerDialog.CHOICE_MODE_MULTIPLE) {
+            if (choiceMode == CHOICE_MODE_MULTIPLE) {
                 // check if selected countries is not null
                 if (getListSelectedCountries() != null && getListSelectedCountriesCount() > 0) {
                     scrollToSelectedMulti(getListSelectedCountries());

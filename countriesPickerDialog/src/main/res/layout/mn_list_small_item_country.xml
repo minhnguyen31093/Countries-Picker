@@ -4,20 +4,20 @@
     android:layout_height="wrap_content"
     android:background="@drawable/mn_selector_item"
     android:orientation="horizontal"
-    android:padding="@dimen/mn_view_horizontal_padding_small">
+    android:padding="@dimen/mn_view_vertical_padding_very_small">
 
     <ImageView
-        android:id="@+id/mn_listItemCountry_imgFlag"
-        android:layout_width="@dimen/mn_icon_medium"
-        android:layout_height="@dimen/mn_icon_medium"
+        android:id="@+id/mn_listSmallItemCountry_imgFlag"
+        android:layout_width="@dimen/mn_icon_24"
+        android:layout_height="@dimen/mn_icon_24"
         android:layout_gravity="center_vertical"/>
 
     <TextView
-        android:id="@+id/mn_listItemCountry_txtCountry"
+        android:id="@+id/mn_listSmallItemCountry_txtCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/mn_view_horizontal_margin_small"
+        android:layout_marginLeft="@dimen/mn_view_horizontal_margin_very_small"
         android:textSize="@dimen/mn_text_size_medium" />
 
 </LinearLayout>
