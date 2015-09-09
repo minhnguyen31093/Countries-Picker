@@ -127,7 +127,7 @@
             android:textSize="@dimen/mn_text_size_medium" />
     </RelativeLayout>
 
-    <com.minhnguyen.countriespickerdialog.customview.CountrySpinner
+    <com.github.minhnguyen31093.countriespicker.customview.CountrySpinner
         android:id="@+id/mn_exampleActivity_spnCountry"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
         android:spinnerMode="dropdown"
         custom:hint="Select Country"/>
 
-    <com.minhnguyen.countriespickerdialog.customview.CountrySearch
+    <com.github.minhnguyen31093.countriespicker.customview.CountrySearch
         android:id="@+id/mn_exampleActivity_atxtCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

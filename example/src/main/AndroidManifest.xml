@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.minhnguyen.example">
+    package="com.github.minhnguyen31093.example">
 
     <application android:allowBackup="true" android:label="@string/app_name"
         android:icon="@drawable/mn_ic_logo" android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.ExampleActivity"
+            android:name="com.github.minhnguyen31093.example.activity.ExampleActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>

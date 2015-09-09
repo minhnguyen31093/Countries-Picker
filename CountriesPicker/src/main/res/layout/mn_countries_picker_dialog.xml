@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mn_white">
+
+    <com.github.minhnguyen31093.countriespicker.customview.SearchView
+        android:id="@+id/mn_countriesPickerDialog_svwSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--android:scrollbarThumbVertical="@drawable/mn_scrollbar_color"-->
+    <ListView
+        android:id="@+id/mn_countriesPickerDialog_lvwCountry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/mn_countriesPickerDialog_btnSelect"
+        android:layout_below="@+id/mn_countriesPickerDialog_svwSearchView" />
+
+    <TextView
+        android:id="@+id/mn_countriesPickerDialog_tvNoData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/mn_countriesPickerDialog_btnSelect"
+        android:layout_below="@+id/mn_countriesPickerDialog_svwSearchView"
+        android:background="@color/mn_white"
+        android:gravity="center"
+        android:text="@string/mn_no_data"
+        android:textColor="@color/mn_black"
+        android:textSize="@dimen/mn_text_size_large"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/mn_countriesPickerDialog_btnSelect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/mn_malachite"
+        android:text="@string/mn_select"
+        android:textColor="@color/mn_white"
+        android:textSize="@dimen/mn_text_size_large"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</RelativeLayout>
