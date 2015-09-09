@@ -19,8 +19,15 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url  "http://dl.bintray.com/minhnguyen31093/maven"
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.1.1'
+//    compile 'com.android.support:appcompat-v7:23.0.1'
+//    compile 'com.github.minhnguyen31093:countries-picker:0.9.0@aar'
     compile project(':CountriesPicker')
 }

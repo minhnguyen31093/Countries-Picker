@@ -1,17 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Light">
         <!-- Customize your theme here. -->
     </style>
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--</style>-->
 
     <!-- For Switch -->
-    <style name="mn_switch_ios">
-        <item name="android:thumb">@drawable/mn_ic_switch_thumb</item>
-        <item name="android:track">@drawable/mn_selector_switch_background</item>
-        <item name="android:textOn"></item>
-        <item name="android:textOff"></item>
-        <item name="android:thumbTextPadding">@dimen/mn_switch_thumb_text_padding</item>
-        <item name="android:switchMinWidth">@dimen/mn_switch_min_width</item>
-    </style>
+    <!--<style name="mn_switch_ios">-->
+        <!--<item name="android:thumb">@drawable/mn_ic_switch_thumb</item>-->
+        <!--<item name="android:track">@drawable/mn_selector_switch_background</item>-->
+        <!--<item name="android:textOn"></item>-->
+        <!--<item name="android:textOff"></item>-->
+        <!--<item name="android:thumbTextPadding">@dimen/mn_switch_thumb_text_padding</item>-->
+        <!--<item name="android:switchMinWidth">@dimen/mn_switch_min_width</item>-->
+    <!--</style>-->
 </resources>
