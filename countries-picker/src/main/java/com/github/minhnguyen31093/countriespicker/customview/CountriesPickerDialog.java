@@ -133,7 +133,8 @@ public class CountriesPickerDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.context = context;
         this.country = country;
-        choiceMode = CountriesAdapter.CHOICE_MODE_SINGLE;
+        this.allCountries = CountriesUtils.getlistCountriesFromJson(context);
+        this.choiceMode = CountriesAdapter.CHOICE_MODE_SINGLE;
         setUp();
         initView();
         initEvent();
@@ -146,7 +147,8 @@ public class CountriesPickerDialog extends Dialog {
         this.setCanceledOnTouchOutside(true);
         this.context = context;
         this.countries = countries;
-        choiceMode = CountriesAdapter.CHOICE_MODE_MULTIPLE;
+        this.allCountries = CountriesUtils.getlistCountriesFromJson(context);
+        this.choiceMode = CountriesAdapter.CHOICE_MODE_MULTIPLE;
         setUp();
         initView();
         initEvent();
