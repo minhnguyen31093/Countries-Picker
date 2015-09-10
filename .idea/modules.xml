@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/countriesPickerDialog/CountriesPicker.iml" filepath="$PROJECT_DIR$/countriesPickerDialog/CountriesPicker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CountriesPickerDialog.iml" filepath="$PROJECT_DIR$/CountriesPickerDialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CountriesPicker.iml" filepath="$PROJECT_DIR$/CountriesPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/countries-picker/countries-picker.iml" filepath="$PROJECT_DIR$/countries-picker/countries-picker.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
     </modules>
   </component>

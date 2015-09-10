@@ -1,1 +1,1 @@
-include ':CountriesPicker', ':example'
+include ':countries-picker', ':example'

@@ -5,7 +5,7 @@ ext {
     bintrayName = 'countries-picker'
 
     publishedGroupId = 'com.github.minhnguyen31093'
-    libraryName = 'Countries-Picker'
+    libraryName = 'countries-picker'
     artifact = 'countries-picker'
 
     libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
