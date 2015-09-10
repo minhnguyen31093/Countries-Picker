@@ -11,9 +11,7 @@
 ### Gradle
 ``` java
 repositories {
-    maven {
-        url  "http://dl.bintray.com/minhnguyen31093/maven"
-    }
+    jcenter()
 }
 
 dependencies {
