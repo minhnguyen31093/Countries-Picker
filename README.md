@@ -1,14 +1,15 @@
 # Countries Picker
--Dialog that allow you to search and pick country from list 
--Dialog that allow you to search and pick countries from list 
--Drop Down List to pick country 
--Auto Complete Text View to search country
+  * Dialog that allow you to search and pick country from list 
+  * Dialog that allow you to search and pick countries from list 
+  * Drop Down List to pick country 
+  * Auto Complete Text View to search country
 
-Require API 8 or later
+**Require API 8 or later**
 
-How to use:
+## How to use:
 
-+Gradle
+### Gradle
+```
 repositories {
     maven {
         url  "http://dl.bintray.com/minhnguyen31093/maven"
@@ -18,75 +19,92 @@ repositories {
 dependencies {
     compile 'com.github.minhnguyen31093:countries-picker:0.9.0'
 }
+```
+###1. Single choice:
+>If you put country in CountriesPickerDialog it will be selected that item.
 
-+Single choice:
-	If you put country in CountriesPickerDialog it will be selected that item
-	CountriesPickerDialog countriesPickerDialog = new CountriesPickerDialog(context, country);
-	countriesPickerDialog.setOnCountryPickerDialogListener(onCountryPickerDialogListener);
-	countriesPickerDialog.setBackgroundColor(getResources().getColor(R.color.yourcolor));
-	countriesPickerDialog.show();
-
-	private CountriesPickerDialog.OnCountryPickerDialogListener onCountryPickerDialogListener = new CountriesPickerDialog.OnCountryPickerDialogListener() {
-		@Override
-		public void onSelectedCountry(Country country) {
-			//selected country
-		}
-	};
-
+```javascript
+CountriesPickerDialog countriesPickerDialog = new CountriesPickerDialog(context, country);
+countriesPickerDialog.setOnCountryPickerDialogListener(onCountryPickerDialogListener);
+countriesPickerDialog.setBackgroundColor(getResources().getColor(R.color.yourcolor));
+countriesPickerDialog.show();
 	
-+Multi choice:
-	If you put countries in CountriesPickerDialog it will be selected these items
-	CountriesPickerDialog countriesPickerDialog = new CountriesPickerDialog(context, countries);
-	countriesPickerDialog.setOnCountriesPickerDialogListener(onCountriesPickerDialogListener);
-	countriesPickerDialog.setBackgroundColor(getResources().getColor(R.color.yourcolor));
-	countriesPickerDialog.setButtonDrawable(getResources().getDrawable(R.drawable.yourdrawable));
-	countriesPickerDialog.show();
-
-	private CountriesPickerDialog.OnCountriesPickerDialogListener onCountriesPickerDialogListener = new CountriesPickerDialog.OnCountriesPickerDialogListener() {
-		@Override
-		public void onSelectedCountries(List<Country> countries) {
-			//selected countries
-		}
-	};
-
-
-+Drop Down List
-	Use customview CountrySpinner in layout:
-	<com.github.minhnguyen31093.countriespicker.customview.CountrySpinner/>
-	spinner.serHint("Select Country");
-	spinner.setOnCountrySpinnerListener(onCountrySpinnerListener);
+private CountriesPickerDialog.OnCountryPickerDialogListener onCountryPickerDialogListener = new CountriesPickerDialog.OnCountryPickerDialogListener() {
+	@Override
+	public void onSelectedCountry(Country country) {
+		//selected country
+	}
+};
+```
 	
-    private CountrySpinner.OnCountrySpinnerListener onCountrySpinnerListener = new CountrySpinner.OnCountrySpinnerListener() {
+###2. Multi choice:
+>If you put countries in CountriesPickerDialog it will be selected these items
+
+```javascript
+CountriesPickerDialog countriesPickerDialog = new CountriesPickerDialog(context, countries);
+countriesPickerDialog.setOnCountriesPickerDialogListener(onCountriesPickerDialogListener);
+countriesPickerDialog.setBackgroundColor(getResources().getColor(R.color.yourcolor));
+countriesPickerDialog.setButtonDrawable(getResources().getDrawable(R.drawable.yourdrawable));
+countriesPickerDialog.show();
+	
+private CountriesPickerDialog.OnCountriesPickerDialogListener onCountriesPickerDialogListener = new CountriesPickerDialog.OnCountriesPickerDialogListener() {
+	@Override
+	public void onSelectedCountries(List<Country> countries) {
+		//selected countries
+	}
+};
+```
+
+###3. Drop Down List
+>Use customview CountrySpinner in layout:
+
+```javascript
+<com.github.minhnguyen31093.countriespicker.customview.CountrySpinner/>
+
+spinner.serHint("Select Country");
+spinner.setOnCountrySpinnerListener(onCountrySpinnerListener);
+private CountrySpinner.OnCountrySpinnerListener onCountrySpinnerListener = new CountrySpinner.OnCountrySpinnerListener() {
         @Override
         public void onCompleted(Country country) {
             //selected country
         }
-    };
+};
+```
 	
+###4. Search Country
+>Use customview CountrySearch in layout:
+
+```javascript
+<com.github.minhnguyen31093.countriespicker.customview.CountrySearch/>
 	
-+Search Country
-	Use customview CountrySearch in layout:
-	<com.github.minhnguyen31093.countriespicker.customview.CountrySearch/>
-	txtCountry.setOnCountrySearchListener(onCountrySearchListener);
-	
-    private CountrySearch.OnCountrySearchListener onCountrySearchListener = new CountrySearch.OnCountrySearchListener() {
+txtCountry.setOnCountrySearchListener(onCountrySearchListener);
+private CountrySearch.OnCountrySearchListener onCountrySearchListener = new CountrySearch.OnCountrySearchListener() {
         @Override
         public void onCompleted(Country country) {
             //selected country
         }
-    };
+};
+```
+	
+## Example
+- Single choice
+- Multi choice
+- Drop Down List
+- Search
 
-Example
-<img src="http://i.imgur.com/ksU5vOm.png"/>
+<img src="http://i.imgur.com/ksU5vOm.png" width="256"/> <img src="http://i.imgur.com/7vVhfUw.png" width="256"/> <img src="http://i.imgur.com/dN8SmTL.png" width="256"/> <img src="http://i.imgur.com/FTnhs75.png" width="256"/> <img src="http://i.imgur.com/Bqt8w5S.png" width="256"/>
 
-Single choice
-<img src="http://i.imgur.com/7vVhfUw.png"/>
+#[License](https://github.com/minhnguyen31093/Countries-Picker/blob/master/LICENSE)
+Copyright 2015 Minh Nguyen
 
-Multi choice
-<img src="http://i.imgur.com/dN8SmTL.png"/>
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-Drop Down List
-<img src="http://i.imgur.com/FTnhs75.png"/>
+    http://www.apache.org/licenses/LICENSE-2.0
 
-Search
-<img src="http://i.imgur.com/Bqt8w5S.png"/>
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
