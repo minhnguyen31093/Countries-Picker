@@ -9,7 +9,7 @@
 ## How to use:
 
 ### Gradle
-```
+``` java
 repositories {
     maven {
         url  "http://dl.bintray.com/minhnguyen31093/maven"
@@ -23,7 +23,7 @@ dependencies {
 ###1. Single choice:
 >If you put country in CountriesPickerDialog it will be selected that item.
 
-```javascript
+``` java
 CountriesPickerDialog countriesPickerDialog = new CountriesPickerDialog(context, country);
 countriesPickerDialog.setOnCountryPickerDialogListener(onCountryPickerDialogListener);
 countriesPickerDialog.setBackgroundColor(getResources().getColor(R.color.yourcolor));
@@ -40,7 +40,7 @@ private CountriesPickerDialog.OnCountryPickerDialogListener onCountryPickerDialo
 ###2. Multi choice:
 >If you put countries in CountriesPickerDialog it will be selected these items
 
-```javascript
+``` java
 CountriesPickerDialog countriesPickerDialog = new CountriesPickerDialog(context, countries);
 countriesPickerDialog.setOnCountriesPickerDialogListener(onCountriesPickerDialogListener);
 countriesPickerDialog.setBackgroundColor(getResources().getColor(R.color.yourcolor));
@@ -58,7 +58,7 @@ private CountriesPickerDialog.OnCountriesPickerDialogListener onCountriesPickerD
 ###3. Drop Down List
 >Use customview CountrySpinner in layout:
 
-```javascript
+``` java
 <com.github.minhnguyen31093.countriespicker.customview.CountrySpinner/>
 
 spinner.serHint("Select Country");
@@ -74,7 +74,7 @@ private CountrySpinner.OnCountrySpinnerListener onCountrySpinnerListener = new C
 ###4. Search Country
 >Use customview CountrySearch in layout:
 
-```javascript
+``` java
 <com.github.minhnguyen31093.countriespicker.customview.CountrySearch/>
 	
 txtCountry.setOnCountrySearchListener(onCountrySearchListener);
@@ -92,7 +92,7 @@ private CountrySearch.OnCountrySearchListener onCountrySearchListener = new Coun
 - Drop Down List
 - Search
 
-<img src="http://i.imgur.com/ksU5vOm.png" width="256"/> <img src="http://i.imgur.com/7vVhfUw.png" width="256"/> <img src="http://i.imgur.com/dN8SmTL.png" width="256"/> <img src="http://i.imgur.com/FTnhs75.png" width="256"/> <img src="http://i.imgur.com/Bqt8w5S.png" width="256"/>
+<img src="http://i.imgur.com/ksU5vOm.png" width="200"/> <img src="http://i.imgur.com/7vVhfUw.png" width="200"/> <img src="http://i.imgur.com/dN8SmTL.png" width="200"/> <img src="http://i.imgur.com/FTnhs75.png" width="200"/> <img src="http://i.imgur.com/Bqt8w5S.png" width="200"/>
 
 #[License](https://github.com/minhnguyen31093/Countries-Picker/blob/master/LICENSE)
 Copyright 2015 Minh Nguyen
