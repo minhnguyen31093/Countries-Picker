@@ -8,6 +8,17 @@ Require API 8 or later
 
 How to use:
 
++Gradle
+repositories {
+    maven {
+        url  "http://dl.bintray.com/minhnguyen31093/maven"
+    }
+}
+
+dependencies {
+    compile 'com.github.minhnguyen31093:countries-picker:0.9.0'
+}
+
 +Single choice:
 	If you put country in CountriesPickerDialog it will be selected that item
 	CountriesPickerDialog countriesPickerDialog = new CountriesPickerDialog(context, country);
@@ -57,6 +68,7 @@ How to use:
 	Use customview CountrySearch in layout:
 	<com.github.minhnguyen31093.countriespicker.customview.CountrySearch/>
 	txtCountry.setOnCountrySearchListener(onCountrySearchListener);
+	
     private CountrySearch.OnCountrySearchListener onCountrySearchListener = new CountrySearch.OnCountrySearchListener() {
         @Override
         public void onCompleted(Country country) {
@@ -65,10 +77,16 @@ How to use:
     };
 
 Example
-<img src="http://i.imgur.com/vCIBSNq.png"/>
+<img src="http://i.imgur.com/ksU5vOm.png"/>
 
 Single choice
-<img src="http://i.imgur.com/gq8bLlK.png"/>
+<img src="http://i.imgur.com/7vVhfUw.png"/>
 
 Multi choice
-<img src="http://i.imgur.com/9YzUnhL.png"/>
+<img src="http://i.imgur.com/dN8SmTL.png"/>
+
+Drop Down List
+<img src="http://i.imgur.com/FTnhs75.png"/>
+
+Search
+<img src="http://i.imgur.com/Bqt8w5S.png"/>
